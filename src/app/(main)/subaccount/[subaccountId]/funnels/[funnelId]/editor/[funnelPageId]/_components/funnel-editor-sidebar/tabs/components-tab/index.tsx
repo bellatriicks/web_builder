@@ -14,6 +14,7 @@ import LinkPlaceholder from './link-placeholder'
 import ContactFormComponentPlaceholder from './contact-form-placeholder'
 import CheckoutPlaceholder from './checkout-placeholder'
 import ButtonPlaceholder from "./button-placeholer";
+import SeparatorPlaceholder from "./separator-placeholder";
 
 interface Props {}
 
@@ -70,6 +71,12 @@ const ComponentsTab = (props: Props) => {
         Component: <LinkPlaceholder />,
         label: 'Link',
         id: 'link',
+        group: 'elements',
+      },
+      {
+        Component: <SeparatorPlaceholder />,
+        label: 'Separator',
+        id: 'separator',
         group: 'elements',
       },
   ];

@@ -103,7 +103,7 @@ const FunnelSteps = ({ funnel, funnelId, pages, subaccountId }: Props) => {
           <ScrollArea className="h-full ">
             <div className="flex gap-4 items-center">
               <Check />
-              Funnel Steps
+              Builder Steps
             </div>
             {pagesState.length ? (
               <DragDropContext
@@ -149,8 +149,8 @@ const FunnelSteps = ({ funnel, funnelId, pages, subaccountId }: Props) => {
             onClick={() => {
               setOpen(
                 <CustomModal
-                  title=" Create or Update a Funnel Page"
-                  subheading="Funnel Pages allow you to create step by step processes for customers to follow"
+                  title=" Create or Update a Builder Page"
+                  subheading="Builder Pages allow you to create step by step processes for customers to follow"
                 >
                   <CreateFunnelPage
                     subaccountId={subaccountId}

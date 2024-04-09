@@ -74,19 +74,19 @@ const FunnelForm: React.FC<CreateFunnelProps> = ({
     )
     await saveActivityLogsNotification({
       agencyId: undefined,
-      description: `Update funnel | ${response.name}`,
+      description: `Update builder | ${response.name}`,
       subaccountId: subAccountId,
     })
     if (response)
       toast({
         title: 'Success',
-        description: 'Saved funnel details',
+        description: 'Saved builder details',
       })
     else
       toast({
         variant: 'destructive',
         title: 'Oppse!',
-        description: 'Could not save funnel details',
+        description: 'Could not save builder details',
       })
     setClose()
     router.refresh()
@@ -94,7 +94,7 @@ const FunnelForm: React.FC<CreateFunnelProps> = ({
   return (
     <Card className="flex-1">
       <CardHeader>
-        <CardTitle>Funnel Details</CardTitle>
+        <CardTitle>Builder Details</CardTitle>
       </CardHeader>
       <CardContent>
         <Form {...form}>
@@ -108,7 +108,7 @@ const FunnelForm: React.FC<CreateFunnelProps> = ({
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Funnel Name</FormLabel>
+                  <FormLabel>Builder Name</FormLabel>
                   <FormControl>
                     <Input
                       placeholder="Name"
@@ -124,10 +124,10 @@ const FunnelForm: React.FC<CreateFunnelProps> = ({
               name="description"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Funnel Description</FormLabel>
+                  <FormLabel>Builder Description</FormLabel>
                   <FormControl>
                     <Textarea
-                      placeholder="Tell us a little bit more about this funnel."
+                      placeholder="Tell us a little bit more about this builder."
                       {...field}
                     />
                   </FormControl>
@@ -143,7 +143,7 @@ const FunnelForm: React.FC<CreateFunnelProps> = ({
                   <FormLabel>Sub domain</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="Sub domain for funnel"
+                      placeholder="Sub domain for builder"
                       {...field}
                     />
                   </FormControl>

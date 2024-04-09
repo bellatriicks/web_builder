@@ -214,13 +214,13 @@ const SubaccountPageId = async ({ params, searchParams }: Props) => {
           <div className="flex gap-4 flex-col xl:!flex-row">
             <Card className="relative">
               <CardHeader>
-                <CardDescription>Funnel Performance</CardDescription>
+                <CardDescription>Builder Performance</CardDescription>
               </CardHeader>
               <CardContent className=" text-sm text-muted-foreground flex flex-col gap-12 justify-between ">
                 <SubaccountFunnelChart data={funnelPerformanceMetrics} />
                 <div className="lg:w-[150px]">
-                  Total page visits across all funnels. Hover over to get more
-                  details on funnel page performance.
+                  Total page visits across all builders. Hover over to get more
+                  details on builder page performance.
                 </div>
               </CardContent>
               <Contact2 className="absolute right-4 top-4 text-muted-foreground" />

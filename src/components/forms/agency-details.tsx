@@ -407,7 +407,7 @@ export const AgencyDetails = ({ data }: Props) => {
               <div className="text-muted-foreground">
                 Deleting your agency cannpt be undone. This will also delete all
                 sub accounts and all data related to your sub accounts. Sub
-                accounts will no longer have access to funnels, contacts etc.
+                accounts will no longer have access to builders, contacts etc.
               </div>
               <AlertDialogTrigger
                 disabled={isLoading || deletingAgency}

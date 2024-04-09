@@ -18,7 +18,7 @@ const EditorSidebar = ({ subaccountId }: Props) => {
   const { state, dispatch } = useEditor();
   return (
     <Sheet open={true} modal={false}>
-      <Tabs className="w-full" defaultValue="Settings">
+      <Tabs className="w-full" defaultValue="Components">
         <SheetContent
           showX={false}
           side="right"

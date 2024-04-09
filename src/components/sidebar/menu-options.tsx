@@ -28,6 +28,7 @@ import CustomModal from "../global/custom-modal";
 import SubAccountDetails from "../forms/subaccount-details";
 import { Separator } from "../ui/separator";
 import { icons } from "@/lib/constants";
+import { usePathname } from "next/navigation";
 
 type Props = {
   defaultOpen?: boolean;
@@ -50,6 +51,7 @@ const MenuOptions = ({
 }: Props) => {
   const { setOpen } = useModal();
   const [isMounted, setIsMounted] = useState(false);
+  const path = usePathname();
 
   const openState = useMemo(
     () => (defaultOpen ? { open: true } : {}),
@@ -86,12 +88,12 @@ const MenuOptions = ({
       >
         <div>
           <AspectRatio ratio={16 / 5}>
-            <Image
+           {sidebarLogo &&  <Image
               src={sidebarLogo}
               alt="Sidebar Logo"
               fill
               className="rounded-md object-contain"
-            />
+            />}
           </AspectRatio>
           <Popover>
             <PopoverTrigger asChild>
@@ -252,42 +254,39 @@ const MenuOptions = ({
           <p className="text-muted-foreground text-xs mb-2">MENU LINKS</p>
           <Separator className="mb-4" />
           <nav className="">
-            <Command className="rounded-lg overflow-visible bg-transparent">
-              <CommandInput placeholder="Search.." />
-              <CommandList className="py-4 overflow-visible">
-                <CommandEmpty>No Results Found</CommandEmpty>
-                <CommandGroup className="overflow-visible">
-                  {sidebarOpt.map((sidebarOptions, i) => {
-                    let val;
-                    const result = icons.find(
-                      (icon) => icon.value === sidebarOptions.icon
-                    );
-                    if (result) {
-                      val = <result.path />;
-                    }
-                    return (
-                      <CommandItem
-                        asChild
-                        key={i}
-                        className=" md:w-[320px] w-full "
-                      >
-                        <Link
-                          href={
-                            sidebarOptions.link === "None"
-                              ? `/subaccount/${subAccounts[0].id}/funnels`
-                              : sidebarOptions.link
-                          }
-                          className="md:w-[320px] w-full flex items-center gap-2 hover:bg-primary hover:text-white rounded-md transition-all"
-                        >
-                          {val}
-                          <span className="">{sidebarOptions.name}</span>
-                        </Link>
-                      </CommandItem>
-                    );
-                  })}
-                </CommandGroup>
-              </CommandList>
-            </Command>
+            <div className="overflow-visible space-y-1">
+              {sidebarOpt.map((sidebarOptions, i) => {
+                let val;
+                const result = icons.find(
+                  (icon) => icon.value === sidebarOptions.icon
+                );
+                if (result) {
+                  val = <result.path />;
+                }
+                return (
+                  <div key={i} className=" md:w-[320px] w-full   ">
+                    <Link
+                      href={
+                        sidebarOptions.link === "None"
+                          ? `/subaccount/${subAccounts[0].id}/funnels`
+                          : sidebarOptions.link
+                      }
+                      className={clsx(
+                        (sidebarOptions.link === "None" &&
+                          path ===
+                            `/subaccount/${subAccounts[0].id}/funnels`) ||
+                          (path === sidebarOptions.link &&
+                            "bg-primary text-white"),
+                        "md:w-[340px] w-full flex items-center gap-2 hover:bg-primary hover:text-white rounded-md transition-all py-2 px-2 z-[100]"
+                      )}
+                    >
+                      {val}
+                      <span className="">{sidebarOptions.name}</span>
+                    </Link>
+                  </div>
+                );
+              })}
+            </div>
           </nav>
         </div>
       </SheetContent>

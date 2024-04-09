@@ -39,7 +39,7 @@ const FunnelSettings: React.FC<FunnelSettingsProps> = async ({
         <CardHeader>
           <CardTitle>Funnel Products</CardTitle>
           <CardDescription>
-            Select the products and services you wish to sell on this funnel.
+            Select the products and services you wish to sell on this builder.
             You can sell one time and recurring products too.
           </CardDescription>
         </CardHeader>

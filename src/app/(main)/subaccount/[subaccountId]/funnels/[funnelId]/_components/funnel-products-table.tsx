@@ -42,7 +42,7 @@ const FunnelProductsTable: React.FC<FunnelProductsTableProps> = ({
     )
     await saveActivityLogsNotification({
       agencyId: undefined,
-      description: `Update funnel products | ${response.name}`,
+      description: `Update builder products | ${response.name}`,
       subaccountId: defaultData.subAccountId,
     })
     setIsLoading(false)

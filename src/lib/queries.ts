@@ -113,14 +113,14 @@ export const upsertAgency = async (agency: Agency, price?: Plan) => {
         SidebarOption: {
           create: [
             {
-              name: "Builder",
-              icon: "pipelines",
-              link: "None",
-            },
-            {
               name: "Dashboard",
               icon: "category",
               link: `/agency/${agency.id}`,
+            },
+            {
+              name: "Builder",
+              icon: "pipelines",
+              link: "None",
             },
             {
               name: "Launchpad",
@@ -152,22 +152,23 @@ export const upsertAgency = async (agency: Agency, price?: Plan) => {
       },
     });
     const data = {
-      id:  v4(),
-      address: 'Remote',
-      subAccountLogo: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Ficonape.com%2Flogo-com-hr-logo-logo-icon-svg-png.html&psig=AOvVaw1_58NKRlqcPS-U--qvUVGH&ust=1712395278909000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCPjElOvfqoUDFQAAAAAdAAAAABAJ',
-      city: 'Somewhere on earth',
-      companyPhone: '',
-      country: '',
-      name: 'Default Account',
-      state: '',
-      zipCode: '',
+      id: v4(),
+      address: "Remote",
+      subAccountLogo:
+        "https://utfs.io/f/2ed59cb5-79f7-46db-936a-5d5812923634-ns88qt.png",
+      city: "Somewhere on earth",
+      companyPhone: "",
+      country: "",
+      name: "Default Account",
+      state: "",
+      zipCode: "",
       createdAt: new Date(),
       updatedAt: new Date(),
-      companyEmail: 'company@email.comm',
+      companyEmail: "company@email.comm",
       agencyId: agencyDetails.id,
       connectAccountId: "",
       goal: 5000,
-    }
+    };
     await upsertSubAccount(data);
     return agencyDetails;
   } catch (error) {
@@ -495,11 +496,7 @@ export const upsertSubAccount = async (subAccount: SubAccount) => {
             icon: "database",
             link: `/subaccount/${subAccount.id}/media`,
           },
-          {
-            name: "Automations",
-            icon: "chip",
-            link: `/subaccount/${subAccount.id}/automations`,
-          },
+
           {
             name: "Pipelines",
             icon: "flag",

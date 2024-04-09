@@ -52,7 +52,7 @@ const EditorNavigation = ({
   const handleOnBlurTitleChange: FocusEventHandler<HTMLInputElement> = async (
     event
   ) => {
-    if (event.target.value === funnelPageDetails.name) return
+    if (event.target.value === funnelPageDetails.name) return;
     if (event.target.value) {
       await upsertFunnelPage(
         subaccountId,
@@ -62,33 +62,33 @@ const EditorNavigation = ({
           order: funnelPageDetails.order,
         },
         funnelId
-      )
+      );
 
-      toast('Success', {
-        description: 'Saved Funnel Page title',
-      })
-      router.refresh()
+      toast("Success", {
+        description: "Saved Builder Page title",
+      });
+      router.refresh();
     } else {
-      toast('Oppse!', {
-        description: 'You need to have a title!',
-      })
-      event.target.value = funnelPageDetails.name
+      toast("Oppse!", {
+        description: "You need to have a title!",
+      });
+      event.target.value = funnelPageDetails.name;
     }
-  }
+  };
   const handlePreviewClick = () => {
-    dispatch({ type: 'TOGGLE_PREVIEW_MODE' })
-    dispatch({ type: 'TOGGLE_LIVE_MODE' })
-  }
+    dispatch({ type: "TOGGLE_PREVIEW_MODE" });
+    dispatch({ type: "TOGGLE_LIVE_MODE" });
+  };
 
   const handleUndo = () => {
-    dispatch({ type: 'UNDO' })
-  }
+    dispatch({ type: "UNDO" });
+  };
 
   const handleRedo = () => {
-    dispatch({ type: 'REDO' })
-  }
+    dispatch({ type: "REDO" });
+  };
   const handleOnSave = async () => {
-    const content = JSON.stringify(state.editor.elements)
+    const content = JSON.stringify(state.editor.elements);
     try {
       const response = await upsertFunnelPage(
         subaccountId,
@@ -97,21 +97,21 @@ const EditorNavigation = ({
           content,
         },
         funnelId
-      )
+      );
       await saveActivityLogsNotification({
         agencyId: undefined,
-        description: `Updated a funnel page | ${response?.name}`,
+        description: `Updated a builder page | ${response?.name}`,
         subaccountId: subaccountId,
-      })
-      toast('Success', {
-        description: 'Saved Editor',
-      })
+      });
+      toast("Success", {
+        description: "Saved Editor",
+      });
     } catch (error) {
-      toast('Oppse!', {
-        description: 'Could not save editor',
-      })
+      toast("Oppse!", {
+        description: "Could not save editor",
+      });
     }
-  }
+  };
 
   return (
     <TooltipProvider>
@@ -136,7 +136,7 @@ const EditorNavigation = ({
             </span>
           </div>
         </aside>
-        <aside>
+        <aside className="flex flex-col justify-center items-center">
           <Tabs
             defaultValue="Desktop"
             className="w-fit "
@@ -190,6 +190,10 @@ const EditorNavigation = ({
               </Tooltip>
             </TabsList>
           </Tabs>
+          <p className="text-muted-foreground text-[12px] mt-2">
+            Select the desired element by clicking on its body. Once selected,
+            drag any element from the sidebar to your preferred location
+          </p>
         </aside>
         <aside className="flex items-center gap-2">
           <Button

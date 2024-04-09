@@ -87,13 +87,13 @@ const CreateFunnelPage: React.FC<CreateFunnelPageProps> = ({
 
       await saveActivityLogsNotification({
         agencyId: undefined,
-        description: `Updated a funnel page | ${response?.name}`,
+        description: `Updated a builder page | ${response?.name}`,
         subaccountId: subaccountId,
       })
 
       toast({
         title: 'Success',
-        description: 'Saves Funnel Page Details',
+        description: 'Saves Builder Page Details',
       })
       router.refresh()
     } catch (error) {
@@ -101,7 +101,7 @@ const CreateFunnelPage: React.FC<CreateFunnelPageProps> = ({
       toast({
         variant: 'destructive',
         title: 'Oppse!',
-        description: 'Could Save Funnel Page Details',
+        description: 'Could Save Builder Page Details',
       })
     }
   }
@@ -109,9 +109,9 @@ const CreateFunnelPage: React.FC<CreateFunnelPageProps> = ({
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Funnel Page</CardTitle>
+        <CardTitle>Builder Page</CardTitle>
         <CardDescription>
-          Funnel pages are flow in the order they are created by default. You
+          Builder pages are flow in the order they are created by default. You
           can move them around to change their order.
         </CardDescription>
       </CardHeader>
@@ -175,7 +175,7 @@ const CreateFunnelPage: React.FC<CreateFunnelPageProps> = ({
                     const response = await deleteFunnelPage(defaultData.id)
                     await saveActivityLogsNotification({
                       agencyId: undefined,
-                      description: `Deleted a funnel page | ${response?.name}`,
+                      description: `Deleted a builder page | ${response?.name}`,
                       subaccountId: subaccountId,
                     })
                     router.refresh()
@@ -211,7 +211,7 @@ const CreateFunnelPage: React.FC<CreateFunnelPageProps> = ({
                     )
                     toast({
                       title: 'Success',
-                      description: 'Saves Funnel Page Details',
+                      description: 'Saves Builder Page Details',
                     })
                     router.refresh()
                   }}

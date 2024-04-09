@@ -7,6 +7,7 @@ import LinkComponent from "./link-component";
 import ContactFormComponent from "./contact-form-component";
 import Checkout from "./checkout";
 import ButtonComponent from "./button";
+import SeparatorComponent from "./separator-component";
 
 interface Props {
   element: EditorElement;
@@ -16,6 +17,8 @@ const Recursive = ({ element }: Props) => {
   switch (element.type) {
     case "text":
       return <TextComponent element={element} />;
+    case "separator":
+      return <SeparatorComponent element={element} />;
     case "button":
       return <ButtonComponent element={element} />;
     case "container":

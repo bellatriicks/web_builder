@@ -52,7 +52,7 @@ export default function FunnelsDataTable<TData, TValue>({
         <div className="flex items-center py-4 gap-2">
           <Search />
           <Input
-            placeholder="Search funnel name..."
+            placeholder="Search builder name..."
             value={
               (table.getColumn(filterValue)?.getFilterValue() as string) ?? ''
             }
@@ -68,8 +68,8 @@ export default function FunnelsDataTable<TData, TValue>({
             if (modalChildren)
               setOpen(
                 <CustomModal
-                  title="Create A Funnel"
-                  subheading="Funnels are a like websites, but better! Try creating one!"
+                  title="Create A Builder"
+                  subheading="Builders are a like websites, but better! Try creating one!"
                 >
                   {modalChildren}
                 </CustomModal>

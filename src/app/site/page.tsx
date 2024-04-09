@@ -36,7 +36,7 @@ export default function Home() {
           <div className="bottom-0 top-[50%] bg-gradient-to-t dark:from-background left-0 right-0 absolute "></div>
         </div>
       </section>
-      <section className="flex z-[50] justify-center flex-col gap-4 items-center mt-[4rem] md:mt-[16rem]">
+      <section className="flex z-[50] justify-center flex-col gap-4 items-center mt-[4rem] md:mt-[19rem]">
         <h2 className="text-4xl text-center">Choose what fits you right</h2>
         <p className="text-muted-foreground text-center">
           Transform your ideas into reality, streamline your workflow, and
