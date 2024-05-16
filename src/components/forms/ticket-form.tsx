@@ -1,6 +1,8 @@
 "use client";
 import {
+  getAuthUserDetails,
   getSubAccountTeamMembers,
+  getTeamMembers,
   saveActivityLogsNotification,
   searchContacts,
   upsertTicket,
@@ -49,6 +51,7 @@ import {
 import { cn } from "@/lib/utils";
 import Loading from "../global/loading";
 import TagCreator from "../global/tag-creator";
+import { db } from "@/lib/db";
 
 type Props = {
   laneId: string;
@@ -62,6 +65,7 @@ const TicketForm = ({ getNewTicket, laneId, subaccountId }: Props) => {
   const [tags, setTags] = useState<Tag[]>([]);
   const [contact, setContact] = useState("");
   const [search, setSearch] = useState("");
+  const [teamLoading, setTeamLoading] = useState(false);
   const [contactList, setContactList] = useState<Contact[]>([]);
   const saveTimerRef = useRef<ReturnType<typeof setTimeout>>();
   const [allTeamMembers, setAllTeamMembers] = useState<User[]>([]);
@@ -80,14 +84,17 @@ const TicketForm = ({ getNewTicket, laneId, subaccountId }: Props) => {
   const isLoading = form.formState.isLoading;
 
   useEffect(() => {
-    if (subaccountId) {
-      const fetchData = async () => {
-        const response = await getSubAccountTeamMembers(subaccountId);
-        if (response) setAllTeamMembers(response);
-      };
-      fetchData();
-    }
-  }, [subaccountId]);
+    const getUser = async () => {
+      setTeamLoading(true);
+      const userData = await getAuthUserDetails();
+      const teamMembers = await getTeamMembers(userData?.Agency?.id);
+      setTeamLoading(false);
+      if (teamMembers) setAllTeamMembers(teamMembers);
+    };
+
+   if(!allTeamMembers.length) getUser();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (defaultData.ticket) {
@@ -119,7 +126,7 @@ const TicketForm = ({ getNewTicket, laneId, subaccountId }: Props) => {
           ...values,
           laneId,
           id: defaultData.ticket?.id,
-          assignedUserId: assignedTo,
+          assignedUserId: assignedTo || null,
           ...(contact ? { customerId: contact } : {}),
         },
         tags
@@ -138,6 +145,7 @@ const TicketForm = ({ getNewTicket, laneId, subaccountId }: Props) => {
       if (response) getNewTicket(response);
       router.refresh();
     } catch (error) {
+      console.log(error);
       toast({
         variant: "destructive",
         title: "Oppse!",
@@ -146,7 +154,9 @@ const TicketForm = ({ getNewTicket, laneId, subaccountId }: Props) => {
     }
     setClose();
   };
-
+  if (teamLoading) {
+    return <div className="w-full flex items-center justify-center"><Loading /></div>;
+  }
   return (
     <Card className="w-full">
       <CardHeader>

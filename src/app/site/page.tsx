@@ -15,7 +15,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <>
-      <section className="flex h-full w-full pt-[300px] relative items-center justify-center flex-col ">
+      <section id='about' className="flex h-full w-full pt-[300px] relative items-center justify-center flex-col ">
         <div className="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_110%)]" />
         <p className="text-center font-bold text-xl">
           Create, Collaborate, and Conquer Web Development!
@@ -36,7 +36,7 @@ export default function Home() {
           <div className="bottom-0 top-[50%] bg-gradient-to-t dark:from-background left-0 right-0 absolute "></div>
         </div>
       </section>
-      <section className="flex z-[50] justify-center flex-col gap-4 items-center mt-[4rem] md:mt-[19rem]">
+      <section id='pricing' className="flex z-[50] justify-center flex-col gap-4 items-center mt-[4rem] md:mt-[19rem]">
         <h2 className="text-4xl text-center">Choose what fits you right</h2>
         <p className="text-muted-foreground text-center">
           Transform your ideas into reality, streamline your workflow, and

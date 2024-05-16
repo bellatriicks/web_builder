@@ -575,7 +575,7 @@ const SettingsTab = (props: Props) => {
           <div className="flex items-center gap-2">
             <Input
               className="h-4 w-4"
-              value={state.editor.selectedElement.styles.display}
+              checked={state.editor.selectedElement.styles.display==='flex'?true:false}
               placeholder="px"
               type="checkbox"
               id="display"

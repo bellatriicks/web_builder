@@ -14,7 +14,6 @@ import {
   Ticket,
   User,
 } from "@prisma/client";
-import { describe } from "node:test";
 import { v4 } from "uuid";
 import {
   CreateFunnelFormSchema,
@@ -29,7 +28,6 @@ export const getAuthUserDetails = async () => {
   if (!user) {
     return;
   }
-
   const userData = await db.user.findUnique({
     where: {
       email: user.emailAddresses[0].emailAddress,
@@ -127,7 +125,7 @@ export const upsertAgency = async (agency: Agency, price?: Plan) => {
               icon: "clipboardIcon",
               link: `/agency/${agency.id}/launchpad`,
             },
-          
+
             {
               name: "Settings",
               icon: "settings",
@@ -184,7 +182,18 @@ export const createTeamUser = async (agencyId: string, user: User) => {
   const response = await db.user.create({ data: { ...user } });
   return response;
 };
-
+export const getTeamMembers = async (id: string | undefined) => {
+const response=  await db.user.findMany({
+    where: {
+      Agency: { id: id || "" },
+    },
+    include: {
+      Agency: { include: { SubAccount: true } },
+      Permissions: { include: { SubAccount: true } },
+    },
+  });
+  return response
+};
 export const saveActivityLogsNotification = async ({
   agencyId,
   description,
@@ -706,13 +715,16 @@ export const upsertTicket = async (
   } else {
     order = ticket.order;
   }
-
+  const newTicket = { ...ticket };
+  if (!newTicket.id) {
+    newTicket.id = v4();
+  }
   const response = await db.ticket.upsert({
     where: {
-      id: ticket.id || v4(),
+      id: newTicket.id || v4(),
     },
-    update: { ...ticket, Tags: { set: tags } },
-    create: { ...ticket, Tags: { connect: tags }, order },
+    update: { ...newTicket, Tags: { set: tags } },
+    create: { ...newTicket, Tags: { connect: tags }, order },
     include: {
       Assigned: true,
       Customer: true,
